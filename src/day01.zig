@@ -79,14 +79,13 @@ pub fn part2() !void {
             }
         }
 
-        for (map.iterator()) |entries| {
-            while (entries.next()) |entry| {
-                if (std.mem.indexOf(u8, line, entry.key_ptr.*)) |idx| {
-                    try digits.append(Digit{ .idx = idx, .ascii = entry.value_ptr.* });
-                }
-                if (std.mem.lastIndexOf(u8, line, entry.key_ptr.*)) |idx| {
-                    try digits.append(Digit{ .idx = idx, .ascii = entry.value_ptr.* });
-                }
+        var entries = map.iterator();
+        while (entries.next()) |entry| {
+            if (std.mem.indexOf(u8, line, entry.key_ptr.*)) |idx| {
+                try digits.append(Digit{ .idx = idx, .ascii = entry.value_ptr.* });
+            }
+            if (std.mem.lastIndexOf(u8, line, entry.key_ptr.*)) |idx| {
+                try digits.append(Digit{ .idx = idx, .ascii = entry.value_ptr.* });
             }
         }
 
